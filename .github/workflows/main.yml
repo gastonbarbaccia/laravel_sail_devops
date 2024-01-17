@@ -36,9 +36,9 @@ jobs:
             cp .env.example .env
             php artisan key:generate
             sudo ./vendor/bin/sail up -d
-            #CONTAINER=sudo docker ps -aqf "name=laravel_sail_devops_laravel.test_1"
-            #sudo docker exec -it $CONTAINER bash
-            #chmod -R 777 storage/
+#            CONTAINER=sudo docker ps -aqf "name=laravel_sail_devops_laravel.test_1"
+#            sudo docker exec -it $CONTAINER bash
+#            chmod -R 777 storage/
 
 #sail contenedor
 #----------------------------------
