@@ -20,16 +20,14 @@ jobs:
         key: ${{ secrets.PASSWORD }}
         port: ${{ secrets.PORT }}
         script: |
+            sudo rm -rf laravel_sail_devops
             sudo apt-get update && sudo apt-get upgrade -yy
             sudo apt-get install docker.io -y
             sudo apt-get install docker-compose -y
             sudo apt install composer -y
-            sudo rm -rf laravel_sail_devops
             sudo apt install --no-install-recommends php8.1 -y
             sudo apt install php8.1-xml -y
             sudo apt-get install php-curl -y
-            sudo docker stop $(docker ps -a -q)
-            sudo docker rm $(docker ps -a -q)
             git clone https://github.com/gastonbarbaccia/laravel_sail_devops.git
             cd laravel_sail_devops
             composer update
@@ -37,10 +35,17 @@ jobs:
             cp .env.example .env
             php artisan key:generate
             sudo ./vendor/bin/sail up -d
+            CONTAINER=$(sudo docker ps -aqf "name=laravel_sail_devops_laravel.test_1")
+            sudo docker exec -it $CONTAINER bash
+            chmod -R 777 storage/
+            
+# Eliminar todos los contenedores creados por sail
+# Dar permisos a storage dentro del contenedor de laravel test_1
+
+
 #            CONTAINER=sudo docker ps -aqf "name=laravel_sail_devops_laravel.test_1"
 #            sudo docker exec -it $CONTAINER bash
 #            chmod -R 777 storage/
-
 #sail contenedor
 #----------------------------------
 #sudo docker exec -it "nombre" bash
