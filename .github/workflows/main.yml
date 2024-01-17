@@ -38,15 +38,6 @@ jobs:
             CONTAINER=$(sudo docker ps -aqf "name=laravel_sail_devops_laravel.test_1")
             sudo docker exec -it $CONTAINER bash
             chmod -R 777 storage/
-            
-# Eliminar todos los contenedores creados por sail
-# Dar permisos a storage dentro del contenedor de laravel test_1
 
-
-#            CONTAINER=sudo docker ps -aqf "name=laravel_sail_devops_laravel.test_1"
-#            sudo docker exec -it $CONTAINER bash
-#            chmod -R 777 storage/
-#sail contenedor
-#----------------------------------
-#sudo docker exec -it "nombre" bash
-#chmod -R 777 storage/
+#Hacer la migracion de las tablas en sail
+#Hacer la segmentacion de los jobs
